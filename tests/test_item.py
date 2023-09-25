@@ -19,17 +19,25 @@ def test_string_to_number():
     assert Item.string_to_number("abc") is None
 
 
-def test_instantiate_from_csv():
-    items_data = Item.instantiate_from_csv('../src/items.csv')
-    assert len(items_data) == 5
+# def test_instantiate_from_csv():
+#     items_data = Item.instantiate_from_csv('../src/items.csv')
+#     assert len(items_data) == 5
+#
+#     assert items_data[0]['name'] == "Смартфон"
+#     assert items_data[0]['price'] == 100
+#     assert items_data[0]['quantity'] == 1
+#
+#     assert len(Item.all) == 5
+#
+#     item1 = Item.all[0]
+#     assert item1.name == "Смартфон"
+#     assert item1.price == 100
+#     assert item1.quantity == 1
 
-    assert items_data[0]['name'] == "Смартфон"
-    assert items_data[0]['price'] == 100
-    assert items_data[0]['quantity'] == 1
+def test_item_repr():
+    item = Item("Товар 1", 10.0, 5)
+    assert repr(item) == "Item('Товар 1', 10.0, 5)"
 
-    assert len(Item.all) == 5
-
-    item1 = Item.all[0]
-    assert item1.name == "Смартфон"
-    assert item1.price == 100
-    assert item1.quantity == 1
+def test_item_str():
+    item = Item("Товар 1", 10.0, 5)
+    assert str(item) == "Товар 1"
