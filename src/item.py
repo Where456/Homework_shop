@@ -8,6 +8,12 @@ class Item:
         self.quantity = quantity
         self.all.append(self)
 
+    def __repr__(self):
+        return f"Item('{self.name}', {self.price}, {self.quantity})"
+
+    def __str__(self):
+        return self.name
+
     def calculate_total_price(self) -> float:
         return self.price * self.quantity
 
@@ -34,5 +40,5 @@ class Item:
             return number
         except ValueError:
             return None
-# print(Item.instantiate_from_csv('../src/items.csv'))
-# print(len(Item.all))
+
+
