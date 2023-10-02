@@ -1,4 +1,5 @@
 from src.item import Item
+from src.phone import Phone
 
 
 def test_calculate_total_price():
@@ -38,6 +39,15 @@ def test_item_repr():
     item = Item("Товар 1", 10.0, 5)
     assert repr(item) == "Item('Товар 1', 10.0, 5)"
 
+
 def test_item_str():
     item = Item("Товар 1", 10.0, 5)
     assert str(item) == "Товар 1"
+
+
+def test_addition():
+    phone1 = Phone("iPhone 14", 120_000, 5, 2)
+    item1 = Item("Смартфон", 10000, 20)
+
+    assert item1 + phone1 == 25
+    assert phone1 + phone1 == 10

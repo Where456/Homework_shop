@@ -14,6 +14,11 @@ class Item:
     def __str__(self):
         return self.name
 
+    def __add__(self, other):
+        if isinstance(other, Item):
+            return self.quantity + other.quantity
+        raise TypeError("Unsupported type for addition")
+
     def calculate_total_price(self) -> float:
         return self.price * self.quantity
 
@@ -40,5 +45,3 @@ class Item:
             return number
         except ValueError:
             return None
-
-
