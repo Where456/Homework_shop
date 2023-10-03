@@ -1,3 +1,5 @@
+import pytest
+
 from src.item import Item
 from src.phone import Phone
 
@@ -51,3 +53,17 @@ def test_addition():
 
     assert item1 + phone1 == 25
     assert phone1 + phone1 == 10
+
+
+def test_phone_initialization():
+    phone = Phone("Samsung Galaxy", 500, 10, 2)
+    assert phone.name == "Samsung Galaxy"
+    assert phone.price == 500
+    assert phone.quantity == 10
+    assert phone.number_of_sim == 2
+
+
+def test_phone_set_invalid_number_of_sim():
+    phone = Phone("Google Pixel", 600, 3, 1)
+    with pytest.raises(ValueError):
+        phone.number_of_sim = -1
