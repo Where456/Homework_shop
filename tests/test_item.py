@@ -63,6 +63,12 @@ def test_phone_initialization():
     assert phone.number_of_sim == 2
 
 
+def test_phone_set_number_of_sim():
+    phone = Phone("iPhone", 800, 5, 1)
+    phone.number_of_sim = 2
+    assert phone.number_of_sim == 2
+
+
 def test_phone_set_invalid_number_of_sim():
     phone = Phone("Google Pixel", 600, 3, 1)
     with pytest.raises(ValueError):
