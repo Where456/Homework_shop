@@ -11,13 +11,6 @@ class LanguageMixin:
     def language(self):
         return self._language
 
-    @language.setter
-    def language(self, value):
-        if value in self.LANGUAGES:
-            self._language = value
-        else:
-            print("Unsupported language")
-
     def change_lang(self):
         if self._language == 'EN':
             self._language = 'RU'
