@@ -1,3 +1,6 @@
+from src.item import Item
+
+
 class LanguageMixin:
     LANGUAGES = ['EN', 'RU']
 
@@ -13,7 +16,7 @@ class LanguageMixin:
         if value in self.LANGUAGES:
             self._language = value
         else:
-            raise ValueError("Unsupported language")
+            print("Unsupported language")
 
     def change_lang(self):
         if self._language == 'EN':
@@ -22,12 +25,10 @@ class LanguageMixin:
             self._language = 'EN'
 
 
-class Keyboard(LanguageMixin):
+class Keyboard(Item, LanguageMixin):
     def __init__(self, name: str, price: float, quantity: int):
-        super().__init__()
-        self.name = name
-        self.price = price
-        self.quantity = quantity
+        Item.__init__(self, name, price, quantity)
+        LanguageMixin.__init__(self)
 
     def __str__(self):
         return self.name
