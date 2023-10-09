@@ -27,16 +27,22 @@ class Item:
 
     @classmethod
     def instantiate_from_csv(cls, filename):
-        with open(filename, 'r') as file:
-            lines = file.readlines()
-            lines = lines[1:]
-            for line in lines:
-                data = line.strip().split(',')
-                name = data[0]
-                price = float(data[1])
-                quantity = int(data[2])
-                item = cls(name, price, quantity)
-        return cls.all
+        try:
+            with open(filename, 'r') as file:
+                lines = file.readlines()
+                lines = lines[1:]
+                for line in lines:
+                    data = line.strip().split(',')
+                    try:
+                        name = data[0]
+                        price = float(data[1])
+                        quantity = int(data[2])
+                        item = cls(name, price, quantity)
+                    except Exception:
+                        raise InstantiateCSVError
+            return cls.all
+        except FileNotFoundError:
+            print("Отсутствует файл item.csv")
 
     @staticmethod
     def string_to_number(string: str):
@@ -45,3 +51,12 @@ class Item:
             return number
         except ValueError:
             return None
+
+
+class InstantiateCSVError(Exception):
+    def __init__(self, message="Файл item.csv поврежден"):
+        super().__init__(message)
+
+
+test = Item.instantiate_from_csv('../incor.csv')
+print(test)

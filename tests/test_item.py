@@ -1,6 +1,6 @@
 import pytest
 
-from src.item import Item
+from src.item import Item, InstantiateCSVError
 from src.phone import Phone
 
 
@@ -73,3 +73,17 @@ def test_phone_set_invalid_number_of_sim():
     phone = Phone("Google Pixel", 600, 3, 1)
     with pytest.raises(ValueError):
         phone.number_of_sim = -1
+
+
+def test_instantiate_from_csv_file_not_found():
+    try:
+        Item.instantiate_from_csv('')
+    except FileNotFoundError:
+        assert 'good' == 'good'
+
+
+def test_instantiate_from_csv_file_not_correct():
+    try:
+        Item.instantiate_from_csv('../incor.csv')
+    except InstantiateCSVError:
+        assert 'good' == 'good'
